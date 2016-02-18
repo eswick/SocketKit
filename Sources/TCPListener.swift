@@ -10,6 +10,7 @@ enum TCPListenerError: ErrorType {
     case ListenFailed(Int32)
     case AcceptFailed(Int32)
     case GetSockNameFailed(Int32)
+    case CloseFailed(Int32)
 }
 
 class TCPListener: Listener {
@@ -97,9 +98,12 @@ class TCPListener: Listener {
     
     func close() throws {
         #if os(Linux)
-            Glibc.close(listenfd)
+            let result = Glibc.close(listenfd)
         #else
-            Darwin.close(listenfd)
+            let result = Darwin.close(listenfd)
         #endif
+        if result == -1 {
+            throw TCPListenerError.CloseFailed(errno)
+        }
     }
 }
