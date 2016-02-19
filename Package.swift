@@ -3,6 +3,6 @@ import PackageDescription
 let package = Package(
     name: "SocketKit",
     dependencies: [
-        .Package(url: "../StreamKit", majorVersion: 0, minor: 8)
+        .Package(url: "https://github.com/eswick/StreamKit.git", majorVersion: 0, minor: 8)
     ]
 )
