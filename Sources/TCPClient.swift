@@ -64,7 +64,11 @@ public class TCPClient: Client {
             }
         }
         
-        let sockfd = socket(Int32(info.sa_family), SOCK_STREAM, 0)
+        #if os(Linux)
+            let sockfd = socket(Int32(info.sa_family), Int32(SOCK_STREAM.rawValue), 0)
+        #else
+            let sockfd = socket(Int32(info.sa_family), SOCK_STREAM, 0)
+        #endif
         
         if sockfd == -1 {
             throw TCPClientError.SocketFailed(errno)
