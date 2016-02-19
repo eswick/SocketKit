@@ -18,7 +18,7 @@ class TCPListener: Listener {
     
     private var listenfd: Int32 = -1
     
-    init(port: Int32) throws {
+    required init(port: Int32) throws {
         self.port = port
         try startSocket()
     }

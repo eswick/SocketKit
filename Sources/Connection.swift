@@ -6,7 +6,7 @@
 
 import StreamKit
 
-class Connection: IOStream {
+public class Connection: IOStream {
     
     private static func ntop(inout addr: sockaddr) -> String? {
         var charArray = [CChar]()
