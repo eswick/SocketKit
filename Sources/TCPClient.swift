@@ -6,7 +6,7 @@
 
 import StreamKit
 
-enum TCPClientError: ErrorType {
+public enum TCPClientError: ErrorType {
     case SocketFailed(Int32)
     case GetAddrInfoFailed(Int32)
     case ConnectFailed(Int32)
