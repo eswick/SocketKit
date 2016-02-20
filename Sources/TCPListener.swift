@@ -13,12 +13,12 @@ enum TCPListenerError: ErrorType {
     case CloseFailed(Int32)
 }
 
-class TCPListener: Listener {
-    var port: Int32
+public class TCPListener: Listener {
+    public let port: Int32
     
     private var listenfd: Int32 = -1
     
-    required init(port: Int32) throws {
+    public required init(port: Int32) throws {
         self.port = port
         try startSocket()
     }
@@ -70,7 +70,7 @@ class TCPListener: Listener {
         }
     }
     
-    func accept() throws -> Connection {
+    public func accept() throws -> Connection {
         
         var clientaddr = sockaddr()
         
@@ -96,7 +96,7 @@ class TCPListener: Listener {
         return Connection(fileDescriptor: descriptor)
     }
     
-    func close() throws {
+    public func close() throws {
         #if os(Linux)
             let result = Glibc.close(listenfd)
         #else

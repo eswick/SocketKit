@@ -33,7 +33,7 @@ public class Connection: IOStream {
         return String.fromCString(charArray)
     }
     
-    var remoteAddr: String {
+    public var remoteAddr: String {
         get {
             var addrlen = socklen_t(sizeof(sockaddr))
             var remoteaddr = sockaddr()
@@ -47,7 +47,7 @@ public class Connection: IOStream {
         }
     }
     
-    var localAddr: String {
+    public var localAddr: String {
         get {
             var addrlen = socklen_t(sizeof(sockaddr))
             var localaddr = sockaddr()
